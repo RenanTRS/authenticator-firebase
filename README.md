@@ -25,8 +25,9 @@ This project is part of my personal portfolio.
 ## Why?
 The purpose of this project was to learn **authentication with firebase**
 
-## How to use  
-To clone and run this project, you'll need **[Git](https://git-scm.com)**, **[yarn v1.22.15](https://yarnpkg.com)** or higher installed on your computer. From your command line:  
+<h2>How to use</h2>
+<p>To clone and run this project, you'll need <a href="https://git-scm.com" target="_blank"><strong>Git</strong></a>, <a href="https://yarnpkg.com" target="_blank"><strong>yarn v1.22.15</strong></a> or higher installed on your computer. From your command line:  </p>
+
 ```bash
 #Clone this repository
 $ git clone https://github.com/RenanTRS/authenticator-firebase.git
