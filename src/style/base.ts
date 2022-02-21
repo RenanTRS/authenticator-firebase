@@ -14,10 +14,3 @@ export const Base = createGlobalStyle`
         font-size: 62.5%;
     }
 `
-
-export const colors = {
-    google: {
-        primary: "#C90C0C",
-        secundary: "#7a0909"
-    }
-}
