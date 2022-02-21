@@ -1,12 +1,16 @@
 import { Main } from "./components/Main"
 import { Home } from "./page/Home"
-
+import theme from './style/theme'
+import {ThemeProvider} from 'styled-components'
 function App() {
 
   return (
-    <Main>
-      <Home />
-    </Main>
+
+    <ThemeProvider theme={theme}>
+      <Main>
+        <Home />
+      </Main>
+    </ThemeProvider>
   )
 }
 
