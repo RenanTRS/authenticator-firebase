@@ -2,15 +2,17 @@
 import { Google } from './Google'
 import googleImg from '../../assets/image/googleImg.svg'
 import { LoginContainer } from '../LoginContainer'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import {auth} from '../../services/firebase';
+import {useAuth} from '../../hooks/useAuth'
 
 export const LoginButton = () => {
-    const provider = new  GoogleAuthProvider();
+    const {user, signInWithGoogle} = useAuth();
+    
     const register = async () => {
-        const user = await signInWithPopup(auth, provider);
-        console.log(user)
+        if(!user){
+            await signInWithGoogle()
+        }
     }
+
 
     return(
         <LoginContainer>
