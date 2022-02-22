@@ -46,12 +46,12 @@ $ yarn dev
 Put your keys in this **.env**  
 
 ```
-VITE_API_KEY=""
-VITE_AUTH_DOMAIN=""
-VITE_PROJECT_ID=""
-VITE_STORAGE_BUCKET=""
-VITE_MESSAGING_SENDER_ID=""
-VITE_APP_ID=""
+VITE_API_KEY="yourKeyHere..."
+VITE_AUTH_DOMAIN="yourKeyHere..."
+VITE_PROJECT_ID="yourKeyHere..."
+VITE_STORAGE_BUCKET="yourKeyHere..."
+VITE_MESSAGING_SENDER_ID="yourKeyHere..."
+VITE_APP_ID="yourKeyHere..."
 ```
 
 ## Built with  
