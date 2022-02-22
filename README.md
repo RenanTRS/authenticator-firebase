@@ -41,11 +41,25 @@ $ yarn
 #Run
 $ yarn dev
 ```
+<h3>Create .env</h3>
+
+Put your keys in this **.env**  
+
+```
+VITE_API_KEY=""
+VITE_AUTH_DOMAIN=""
+VITE_PROJECT_ID=""
+VITE_STORAGE_BUCKET=""
+VITE_MESSAGING_SENDER_ID=""
+VITE_APP_ID=""
+```
+
 ## Built with  
 - [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
 - [ReactJs](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [styled-components](https://www.styled-components.com/)
+- [react-router-dom](https://reactrouter.com/docs/en/v6)
 - [Firebase](https://firebase.google.com/docs/web/setup?authuser=1) and [Firebase auth with google](https://firebase.google.com/docs/auth/web/google-signin?authuser=1)
 
 ## Contact
