@@ -4,6 +4,7 @@ import theme from './style/theme'
 
 import { Main } from "./components/Main"
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { AuthContextProvider } from './contexts/AuthContext'
 import { Home } from "./page/Home"
 import { Room } from "./page/Room"
 
@@ -14,10 +15,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <Main>
         <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/room" element={<Room/>} />
-          </Routes>
+          <AuthContextProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/room" element={<Room/>} />
+            </Routes>
+          </AuthContextProvider>
         </Router>
         
       </Main>
