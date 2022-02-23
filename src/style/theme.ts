@@ -13,8 +13,8 @@ export default {
     },
     github:{
         colors: {
-            primary: "",
-            secundary: ""
+            primary: "#000",
+            secundary: "#333"
         }
     }
 

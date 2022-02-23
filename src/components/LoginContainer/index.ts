@@ -5,4 +5,5 @@ export const LoginContainer = styled.div`
     justify-content: center;
     align-items: center;
     wrap: wrap;
+    gap: 2rem;
 `
