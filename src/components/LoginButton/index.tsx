@@ -1,25 +1,30 @@
 
 import { Google } from './Google'
+import { GitHub } from './GitHub'
 import googleImg from '../../assets/image/googleImg.svg'
 import githubImg from '../../assets/image/githubImg.svg'
 import { LoginContainer } from '../LoginContainer'
 import {useAuth} from '../../hooks/useAuth'
-import { GitHub } from './GitHub'
 
 export const LoginButton = () => {
-    const {user, signInWithGoogle} = useAuth();
+    const {user, signInWithGoogle, signInWithGitHub} = useAuth();
     
-    const register = async () => {
+    const loginGoogle = async () => {
         if(!user){
             await signInWithGoogle()
+        }
+    }
+    const loginGitHub = async () => {
+        if(!user){
+            await signInWithGitHub()
         }
     }
 
 
     return(
         <LoginContainer>
-            <Google onClick={register}><img src={googleImg} alt="Google" /></Google>
-            <GitHub><img src={githubImg} alt="GitHub" /></GitHub>
+            <Google onClick={loginGoogle}><img src={googleImg} alt="Google" /></Google>
+            <GitHub onClick={loginGitHub}><img src={githubImg} alt="GitHub" /></GitHub>
         </LoginContainer>
     )
 }
