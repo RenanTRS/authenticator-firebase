@@ -2,7 +2,6 @@ import {createContext, ReactNode, useState} from 'react'
 
 import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import {auth} from '../services/firebase';
-import {useNavigate} from 'react-router-dom'
 
 type User = {
     id: string;
@@ -21,24 +20,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
     const [user, setUser] = useState<User>();
-
-    //login persistence
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(user){
-                const {uid, displayName} = user
-
-                setUser({
-                    id: uid,
-                    name: displayName
-                })
-            }
-        })
-
-        return () => {
-            unsubscribe()
-        }
-    },[])
+    const navigate = useNavigate();
 
     const signInWithGoogle = async () => {
         const provider = new GoogleAuthProvider()
