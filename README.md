@@ -60,7 +60,7 @@ VITE_APP_ID="yourKeyHere..."
 - [TypeScript](https://www.typescriptlang.org/)
 - [styled-components](https://www.styled-components.com/)
 - [react-router-dom](https://reactrouter.com/docs/en/v6)
-- [Firebase](https://firebase.google.com/docs/web/setup?authuser=1), [Firebase auth with Google](https://firebase.google.com/docs/auth/web/google-signin?authuser=1) and [Firebase auth with GitHub](https://firebase.google.com/docs/auth/web/github-auth?authuser=1)
+- [Firebase](https://firebase.google.com/docs/web/setup?authuser=1) auth with [Google](https://firebase.google.com/docs/auth/web/google-signin?authuser=1) and [GitHub](https://firebase.google.com/docs/auth/web/github-auth?authuser=1)
 
 ## Contact
 - Email me - renantrsouza@gmail.com  
