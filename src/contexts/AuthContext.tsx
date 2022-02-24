@@ -21,7 +21,24 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
     const [user, setUser] = useState<User>();
-    const navigate = useNavigate();
+
+    //login persistence
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if(user){
+                const {uid, displayName} = user
+
+                setUser({
+                    id: uid,
+                    name: displayName
+                })
+            }
+        })
+
+        return () => {
+            unsubscribe()
+        }
+    },[])
 
     const signInWithGoogle = async () => {
         const provider = new GoogleAuthProvider()
