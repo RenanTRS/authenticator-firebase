@@ -1,19 +1,18 @@
-import {createContext, ReactNode, useState} from 'react'
+import { createContext, ReactNode, useState, useEffect } from 'react'
 
-import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import {auth} from '../services/firebase';
-import {useNavigate} from 'react-router-dom'
 
-type User = {
+type User = { //user type
     id: string;
     name: string | null;
 }
-type AuthContextType = {
+type AuthContextType = { //context type
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
     signInWithGitHub: () => Promise<void>;
 }
-type AuthContextProviderProps = {
+type AuthContextProviderProps = { //props type
     children: ReactNode;
 }
 
@@ -21,10 +20,28 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
     const [user, setUser] = useState<User>();
-    const navigate = useNavigate();
 
+    //login persistence
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if(user){
+                const {uid, displayName} = user
+
+                setUser({
+                    id: uid,
+                    name: displayName
+                })
+            }
+        })
+
+        return () => {
+            unsubscribe()
+        }
+    },[])
+
+    //Login with google
     const signInWithGoogle = async () => {
-        const provider = new GoogleAuthProvider()
+        const provider = new GoogleAuthProvider() //get provider
         const result = await signInWithPopup(auth, provider)
     
         if(result.user){
@@ -34,11 +51,12 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
                 id: uid,
                 name: displayName,
             })
-            navigate('/room')
         }
     }
+    
+    //Login with github
     const signInWithGitHub = async () => {
-        const provider = new GithubAuthProvider()
+        const provider = new GithubAuthProvider() //get provider
         try{
             const result = await signInWithPopup(auth, provider)
 
@@ -49,7 +67,6 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
                     id: uid,
                     name: displayName
                 })
-                navigate('/room')
             }
         } catch(error){
             console.log(error)
