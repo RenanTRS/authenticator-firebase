@@ -12,16 +12,20 @@ export const LoginButton = () => {
     const navigate = useNavigate()
     
     const loginGoogle = async () => {
-        if(!user){
+        try{
             await signInWithGoogle()
+            navigate('/room')
+        } catch(err){
+            console.log(err)
         }
-        navigate('/room')
     }
     const loginGitHub = async () => {
-        if(!user){
+        try{
             await signInWithGitHub()
+            navigate('/room')
+        }catch(err){
+            console.log(err)
         }
-        navigate('/room')
     }
 
 

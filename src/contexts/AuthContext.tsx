@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useState, useEffect } from 'react'
 
-import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
+import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import {auth} from '../services/firebase';
+import {useNavigate} from 'react-router-dom'
 
 type User = { //user type
     id: string;
@@ -11,6 +12,7 @@ type AuthContextType = { //context type
     user: User | undefined;
     signInWithGoogle: () => Promise<void>;
     signInWithGitHub: () => Promise<void>;
+    logOut: () => Promise<void>;
 }
 type AuthContextProviderProps = { //props type
     children: ReactNode;
@@ -20,6 +22,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
     const [user, setUser] = useState<User>();
+    const navigate = useNavigate()
 
     //login persistence
     useEffect(() => {
@@ -73,8 +76,13 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
         }
     }
 
+    const logOut = async () => {
+        await signOut(auth)
+        navigate('/')
+    }
+
     return(
-        <AuthContext.Provider value={{user, signInWithGoogle, signInWithGitHub}}>
+        <AuthContext.Provider value={{user, signInWithGoogle, signInWithGitHub, logOut}}>
             {props.children}
         </AuthContext.Provider>
     );
