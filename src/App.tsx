@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { AuthContextProvider } from './contexts/AuthContext'
 import { Home } from "./page/Home"
 import { Room } from "./page/Room"
+import { Error } from './page/Error'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/room" element={<Room/>} />
+              <Route path="*" element={<Error />} />
             </Routes>
           </AuthContextProvider>
         </Router>
