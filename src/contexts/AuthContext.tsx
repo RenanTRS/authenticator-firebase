@@ -10,6 +10,7 @@ type User = { //user type
 }
 type AuthContextType = { //context type
     user: User | undefined;
+    isLogged: boolean;
     signInWithGoogle: () => Promise<void>;
     signInWithGitHub: () => Promise<void>;
     logOut: () => Promise<void>;
@@ -22,6 +23,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
     const [user, setUser] = useState<User>();
+    const [isLogged, setIsLogged] = useState<boolean>(false)
     const navigate = useNavigate()
 
     //login persistence
@@ -34,6 +36,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
                     id: uid,
                     name: displayName
                 })
+                setIsLogged(true) //Let log in
             }
         })
 
@@ -54,6 +57,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
                 id: uid,
                 name: displayName,
             })
+            setIsLogged(true) //Let log in
         }
     }
     
@@ -70,6 +74,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
                     id: uid,
                     name: displayName
                 })
+                setIsLogged(true) //Let log in
             }
         } catch(error){
             console.log(error)
@@ -78,11 +83,12 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 
     const logOut = async () => {
         await signOut(auth)
+        setIsLogged(false) //Prevents logging in
         navigate('/')
     }
 
     return(
-        <AuthContext.Provider value={{user, signInWithGoogle, signInWithGitHub, logOut}}>
+        <AuthContext.Provider value={{user, signInWithGoogle, signInWithGitHub, logOut, isLogged}}>
             {props.children}
         </AuthContext.Provider>
     );
