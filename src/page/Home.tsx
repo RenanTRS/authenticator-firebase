@@ -10,7 +10,6 @@ export const Home = () => {
         <LoginScreen>
             <h1>Faça login</h1>
             <img src={arrowImg} alt="" />
-
             <LoginButton />
         </LoginScreen>
     )

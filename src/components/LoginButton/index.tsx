@@ -8,23 +8,32 @@ import {useAuth} from '../../hooks/useAuth'
 import {useNavigate} from 'react-router-dom'
 
 export const LoginButton = () => {
-    const {user, signInWithGoogle, signInWithGitHub} = useAuth();
+    const {user, isLogged, signInWithGoogle, signInWithGitHub} = useAuth();
     const navigate = useNavigate()
     
     const loginGoogle = async () => {
-        try{
-            await signInWithGoogle()
+        if(user && isLogged){ //Check login
             navigate('/room')
-        } catch(err){
-            console.log(err)
+        } else {
+            try{
+                await signInWithGoogle()
+                navigate('/room')
+            } catch(err){
+                console.log(err)
+            }
         }
     }
+
     const loginGitHub = async () => {
-        try{
-            await signInWithGitHub()
+        if(user && isLogged){ //Check login
             navigate('/room')
-        }catch(err){
-            console.log(err)
+        } else {
+            try{
+                await signInWithGitHub()
+                navigate('/room')
+            }catch(err){
+                console.log(err)
+            }
         }
     }
 
